@@ -3,6 +3,8 @@ import Head from 'next/head'
 import styles from '@/styles/Layout.module.css'
 import Header from "./Header";
 import Footer from "./Footer";
+import Showcase from "@/components/Showcase";
+import {useRouter} from "next/router";
 
 type LayoutProps = {
   title: string;
@@ -12,6 +14,7 @@ type LayoutProps = {
 }
 
 const Layout = (props: LayoutProps) => {
+  const router = useRouter()
   const { title, keywords, description, children } = props
 
   return (
@@ -22,6 +25,7 @@ const Layout = (props: LayoutProps) => {
         <meta name="keywords" content={keywords} />
       </Head>
       <Header />
+      {router.pathname === '/' && <Showcase/>}
       <div className={styles.container}>
         {children}
       </div>
