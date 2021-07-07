@@ -1,6 +1,8 @@
 import React, {ReactNode} from 'react';
 import Head from 'next/head'
 import styles from '../styles/Layout.module.css'
+import Header from "./Header";
+import Footer from "./Footer";
 
 type LayoutProps = {
   title: string;
@@ -19,9 +21,11 @@ const Layout = (props: LayoutProps) => {
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
       </Head>
+      <Header />
       <div className={styles.container}>
         {children}
       </div>
+      <Footer />
     </div>
   );
 };
