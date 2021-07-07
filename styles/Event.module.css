@@ -21,9 +21,15 @@
     top: 0;
 }
 
+.edit {
+    color: teal;
+    cursor: pointer;
+}
+
 .delete {
     margin-left: 20px;
     color: red;
+    cursor: pointer;
 }
 
 .back {

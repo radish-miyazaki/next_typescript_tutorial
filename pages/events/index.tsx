@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from "@/components/Layout";
 import EventItem from "@/components/EventItem";
-import {API_URL} from "@/config/index";
+import {API_URL, PER_PAGE} from "@/config/index";
+import Pagination from "@/components/Pagination";
 
-
-const Index = ({events}) => {
+const Index = ({events, page, total}) => {
   return (
     <Layout>
       <h1>Events</h1>
@@ -14,16 +14,25 @@ const Index = ({events}) => {
           {e.name}
         </EventItem>
       ))}
+      <Pagination total={total} page={page} />
     </Layout>
   );
-};
+}
 
-export const getStaticProps = async () => {
-  const res = await fetch(`${API_URL}/api/events`)
-  const events = await res.json()
+export const getServerSideProps = async ({query: {page = 1}}) => {
+  // Calculate start page
+  const start = Number(page) === 1 ? 0 : (Number(page) -1) * PER_PAGE
+
+  // Fetch total/count
+  const totalRes = await fetch(`${API_URL}/events/count`)
+  const total = await totalRes.json()
+
+  // Fetch events
+  const eventRes = await fetch(`${API_URL}/events?_sort=date:ASC&_limit=${PER_PAGE}&_start=${start}`)
+  const events = await eventRes.json()
+
   return {
-    props: {events},
-    revalidate: 1,
+    props: {events, page: Number(page), total},
   }
 }
 
