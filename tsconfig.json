@@ -6,6 +6,7 @@
       "@/styles/*": ["styles/*"],
       "@/config/*": ["config/*"],
       "@/types/*": ["types/*"],
+      "@/context/*": ["context/*"]
     },
     "target": "es5",
     "lib": [

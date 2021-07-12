@@ -5,8 +5,8 @@ import Link from "next/link"
 import {API_URL} from "@/config/index";
 import styles from "@/styles/Form.module.css"
 import {Event} from "@/types/index";
-import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const initEvent: Event = {
   name: '',
